@@ -21,6 +21,12 @@
   th, td {
     padding: 10px;
   } */
+#app th, #app td {
+    min-width: 100px; /* Adjust as needed */
+    min-height: 50px; /* Adjust as needed */
+    text-align: center;
+    vertical-align: middle;
+}
 
 /* CHECKBOX TOGGLES */
 

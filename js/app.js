@@ -13,11 +13,24 @@ var categories = ['Lands', 'Creatures', 'Planeswalkers', 'Artifacts', 'Enchantme
 
       // Create categories for library row
       var libraryCategory = document.createElement('td');
-      libraryCategory.innerHTML = `
+      /* libraryCategory.innerHTML = `
         <button onclick="decrement(${index}, 'library')">-</button>
         <span id="library-${index}">0</span>
         <button onclick="increment(${index}, 'library')">+</button>
+      `; */
+
+      libraryCategory.innerHTML = `
+      <div class="plusminus stacked">
+      <button onclick="decrement(${index}, 'library')"></button>
+      <span id="library-${index}">0</span>
+      <button onclick="increment(${index}, 'library')"></button>
+      </div>
       `;
+
+      //
+
+        
+
       libraryRow.appendChild(libraryCategory);
 
       // Set default values for library row
@@ -26,11 +39,20 @@ var categories = ['Lands', 'Creatures', 'Planeswalkers', 'Artifacts', 'Enchantme
 
       // Create categories for revealed row
       var revealedCategory = document.createElement('td');
-      revealedCategory.innerHTML = `
+      /* revealedCategory.innerHTML = `
         <button onclick="decrement(${index}, 'revealed')">-</button>
         <span id="revealed-${index}">0</span>
         <button onclick="increment(${index}, 'revealed')">+</button>
+      `; */
+      revealedCategory.innerHTML = `
+      <div class="plusminus stacked">
+      <button onclick="decrement(${index}, 'revealed')"></button>
+      <span id="revealed-${index}">0</span>
+      <button onclick="increment(${index}, 'revealed')"></button>
+      </div>
       `;
+
+  
       revealedRow.appendChild(revealedCategory);
 
       // Create categories for percentage row
