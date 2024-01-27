@@ -1,106 +1,66 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-  <style>
-    table {
-      width: 100%;
-      text-align: center;
-    }
-    th, td {
-      padding: 10px;
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kansas Dynamics Password Generator</title>
+    <meta name="description" content="KansasDynamics Password Generator: Create a random and secure password" />
+    <meta name="keywords" content="passwords, random, dynamic generation" />
+    <meta name="author" content="Kansas Dynamics" />
+    <link href="https://kansasdynamics.com/wp-content/uploads/kansasdynamics_icon_color.png" rel="shortcut icon">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900%7CRubik:100,200,300,400,500,600,700,800,900%7CPoppins:100,200,300,400,500,600,700,800,900%7CNoto+Sans:100,200,300,400,500,600,700,800,900%7CUbuntu:100,200,300,400,500,600,700,800,900%7CNunito+Sans:100,200,300,400,500,600,700,800,900&#038;subset=latin,latin-ext' type='text/css' media='all' rel='stylesheet' />
 </head>
-<body>
-  <table id="app">
-    <thead>
-      <tr id="headers"></tr>
-    </thead>
-    <tbody>
-      <tr id="libraryRow"></tr>
-      <tr id="revealedRow"></tr>
-      <tr id="percentageRow"></tr>
-    </tbody>
-  </table>
 
-  <script>
-    var categories = ['Lands', 'Creatures', 'Planeswalkers', 'Artifacts', 'Enchantments', 'Sorceries', 'Instants']; // Add more categories as needed
+<body class="bg-body-tertiary">
+  <div class="container">
+    <main>
+      <div class="row py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="img/kansasdynamics_logo_color.png" alt="Kansas Dynamics logo">
+        <h2 id="headline">MTG Strategy Helper</h2>
+        <p class="lead">Calculate card draw percentages in Magic: The Gathering</p>
+      </div>
+      <div class="row g-5">
+        <div class="col">
+            <table id="app" class="table table-bordered border-primary">
+                <thead>
+                  <tr id="headers">
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id="libraryRow">
+                    <td>Library</td>
+                  </tr>
+                  <tr id="revealedRow">
+                    <td>Revealed</td>
+                  </tr>
+                  <tr id="percentageRow">
+                    <td>Percentage</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+      </div>
+    </main>
 
-    var headers = document.getElementById('headers');
-    var libraryRow = document.getElementById('libraryRow');
-    var revealedRow = document.getElementById('revealedRow');
-    var percentageRow = document.getElementById('percentageRow');
-
-    categories.forEach(function(category, index) {
-      // Create headers
-      var header = document.createElement('th');
-      header.textContent = category;
-      headers.appendChild(header);
-
-      // Create categories for library row
-      var libraryCategory = document.createElement('td');
-      libraryCategory.innerHTML = `
-        <button onclick="decrement(${index}, 'library')">-</button>
-        <span id="library-${index}">0</span>
-        <button onclick="increment(${index}, 'library')">+</button>
-      `;
-      libraryRow.appendChild(libraryCategory);
-
-      // Set default values for library row
-  var defaultValues = [22, 8, 2, 3, 4, 9, 12]; // Add more default values as needed
-  document.getElementById(`library-${index}`).textContent = defaultValues[index];
-
-      // Create categories for revealed row
-      var revealedCategory = document.createElement('td');
-      revealedCategory.innerHTML = `
-        <button onclick="decrement(${index}, 'revealed')">-</button>
-        <span id="revealed-${index}">0</span>
-        <button onclick="increment(${index}, 'revealed')">+</button>
-      `;
-      revealedRow.appendChild(revealedCategory);
-
-      // Create categories for percentage row
-      var percentageCategory = document.createElement('td');
-      percentageCategory.innerHTML = `
-        <span id="percentage-${index}">0%</span>
-      `;
-      percentageRow.appendChild(percentageCategory);
-    });
-
-    window.increment = function(index, type) {
-      var element = document.getElementById(`${type}-${index}`);
-      element.textContent = parseInt(element.textContent) + 1;
-      updatePercentages();
-    };
-
-    window.decrement = function(index, type) {
-      var element = document.getElementById(`${type}-${index}`);
-      var currentCount = parseInt(element.textContent);
-      if (currentCount > 0) {
-        element.textContent = currentCount - 1;
-        updatePercentages();
-      }
-    };
-
-    function updatePercentages() {
-  var totalLibraryCount = 0;
-  var totalRevealedCount = 0;
-
-  categories.forEach(function(category, index) {
-    totalLibraryCount += parseInt(document.getElementById(`library-${index}`).textContent);
-    totalRevealedCount += parseInt(document.getElementById(`revealed-${index}`).textContent);
-  });
-
-  var totalRemainingCount = totalLibraryCount - totalRevealedCount;
-
-  categories.forEach(function(category, index) {
-    var libraryCount = parseInt(document.getElementById(`library-${index}`).textContent);
-    var revealedCount = parseInt(document.getElementById(`revealed-${index}`).textContent);
-    var remainingCount = libraryCount - revealedCount;
-    var percentage = totalRemainingCount === 0 ? 0 : Math.round((remainingCount / totalRemainingCount) * 100);
-    document.getElementById(`percentage-${index}`).textContent = `${percentage}%`;
-  });
-}
-  </script>
+    <!-- FOOTER -->
+    <footer class="my-5 pt-5 text-body-secondary text-center text-small">
+      <p class="kdIcon"><a href="https://kansasdynamics.com" target="_blank"><img src="img/kd_icon.png" id="kdIcon"></a></p>
+      <p class="mb-1">&copy; 2023 Kansas Dynamics</p>
+      <ul class="list-inline footer-menu">
+        <li class="list-inline-item"><a href="https://kansasdynamics.com/terms-and-conditions/" target="_blank">Terms</a></li>
+        <li class="list-inline-item"><a href="https://kansasdynamics.com/privacy-policy/" target="_blank">Privacy</a></li>
+        <li class="list-inline-item"><a href="https://kansasdynamics.com/cookies-policy/" target="_blank">Cookies</a></li>
+      </ul>
+    </footer>
+  </div>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/app.js"></script>
 </body>
+
 </html>
